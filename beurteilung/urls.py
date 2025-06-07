@@ -16,23 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . views import home
+from . views import index, beurteilungstemplate_list, beurteilungstemplate_detail
 
 urlpatterns = [
-    path('', home , name='home'),
+    path('', index , name='index'),
 
 
     # Belegschaftsmanagement
-
+    path('abteilungen-list/', index, name='abteilungen_list'),
     
-
+    
     # Beurteilungstemplates
-
-
-
-
-    # Beurteilungen
-
+    path('beurteilungstemplates-list/', beurteilungstemplate_list, name='beurteilungstemplates_list'),
+    path('beurteilungstemplates-detail/<int:template_id>/', beurteilungstemplate_detail, name='beurteilungstemplates_detail'),
     
+    # Beurteilungen
+   
 
 ]
