@@ -88,6 +88,7 @@ class Beurteilungstemplate(models.Model):
     """
 
     beurteilungstemplate_bezeichnung = models.CharField(max_length=255 )
+    
 
     def __str__(self):
         return f'TEMPLATE {self.beurteilungstemplate_bezeichnung}'

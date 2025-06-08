@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . views import index, beurteilungstemplate_list, beurteilungstemplate_detail
+from . views import index, beurteilungstemplates_list, beurteilungstemplates_detail, beurteilungen_list
+
 
 urlpatterns = [
     path('', index , name='index'),
@@ -27,10 +28,10 @@ urlpatterns = [
     
     
     # Beurteilungstemplates
-    path('beurteilungstemplates-list/', beurteilungstemplate_list, name='beurteilungstemplates_list'),
-    path('beurteilungstemplates-detail/<int:template_id>/', beurteilungstemplate_detail, name='beurteilungstemplates_detail'),
+    path('beurteilungstemplates-list/', beurteilungstemplates_list, name='beurteilungstemplates_list'),
+    path('beurteilungstemplates-detail/<int:template_id>/', beurteilungstemplates_detail, name='beurteilungstemplates_detail'),
     
     # Beurteilungen
    
-
+    path('beurteilungen-list/', beurteilungen_list, name='beurteilung_list'),
 ]

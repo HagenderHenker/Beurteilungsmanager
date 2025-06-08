@@ -1,0 +1,24 @@
+
+{%extends "container.html"%}
+
+{%block content%}
+
+
+    {% for beurteilung in beurteilungen%}
+
+    <p> {{ beurteilung.name }} </p>
+    <p> {{ beurteilung.beschreibung }} </p>
+    <p> {{ beurteilung.zeitstempel }} </p>
+    <p> {{ beurteilung.zeitstempel_letzte_aenderung }} </p>
+    <p> {{ beurteilung.zeitstempel_erstellung }} </p>   
+    <p> {{ beurteilung.zeitstempel_letzte_bearbeitung }} </p>   
+    <hr>
+
+    {% endfor %}
+
+    {% if beurteilungen|length == 0 %}
+        <p>Keine Beurteilung gefunden.</p>
+    {% endif %}
+
+
+{%endblock content%}

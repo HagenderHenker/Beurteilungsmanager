@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
-
+from beurteilung.forms import BeurteilungForm
+from beurteilung.models import Beurteilungen,  Beurteilungstemplate, Beurteilungsgliederung, Beurteilungsauspraegungen
 # Create your views here.
 
 def index(request):
@@ -9,15 +10,22 @@ def index(request):
     """
     return render(request, 'index.html', {})
 
+# Templates
 
-def beurteilungstemplate_list(request):
+def beurteilungstemplates_list(request):
     """
     View to list all Beurteilung templates.
     """
-    # This is a placeholder for the actual logic to retrieve Beurteilung templates.
-    return HttpResponse("List of Beurteilung templates will be displayed here.")
+   
+    beurteilungstemplates = Beurteilungstemplate.objects.all()
+    print(beurteilungstemplates)
+    
+    for element in beurteilungstemplates:
+        print(element)
 
-def beurteilungstemplate_detail(request, template_id):
+    return render(request, 'beurteilungstemplate/beurteilungstemplates_list.html', {'beurteilungstemplates': beurteilungstemplates})
+
+def beurteilungstemplates_detail(request, template_id):
     """
     View to display details of a specific Beurteilung template.
     """
@@ -44,3 +52,32 @@ def beurteilungsauspraegungen_list(request):
     """
     # This is a placeholder for the actual logic to retrieve Beurteilung auspraegungen.
     return HttpResponse("List of Beurteilung auspraegungen will be displayed here.")       
+
+def beurteilungen_list(request):
+    """
+    View to list all Beurteilungen.
+    """
+
+
+    beurteilungen = Beurteilungen.objects.all()
+    print(beurteilungen)
+
+
+    return render(request, 'beurteilung/beurteilungen_list.html', {'beurteilungen': beurteilungen})
+
+0
+
+def beurteilung_new(request):
+    """
+    View to handle Beurteilung form submission.
+    """
+    if request.method == 'POST':
+        form = BeurteilungForm(request.POST)
+        if form.is_valid():
+            # Process the form data
+            form.save()
+            return HttpResponse("Beurteilung submitted successfully.")
+    else:
+        form = BeurteilungForm()
+
+    return render(request, 'beurteilung_form.html', {'form': form})

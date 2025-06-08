@@ -1,0 +1,22 @@
+
+{%extends "container.html"%}
+
+{%block content%}
+
+
+    {% for template in beurteilungstemplates%}
+
+        <div class="beurteilungstemplate">
+            <p>{{ template.beurteilungstemplate_bezeichnung}}</p>
+      
+        </div>
+        <hr>
+
+    {% endfor %}
+
+    {% if beurteilungstemplates|length == 0 %}
+        <p>Keine Beurteilungstemplates gefunden.</p>
+    {% endif %}
+
+
+{%endblock content%}
