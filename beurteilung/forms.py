@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from beurteilung.models import Beurteilungen
+from beurteilung.models import Beurteilungen, Beurteilungstemplate, Beurteilungsgliederung, Beurteilungsauspraegungen
 
 
 class BeurteilungForm(ModelForm):
@@ -11,3 +11,8 @@ class BeurteilungForm(ModelForm):
             'beurteilung_frist': forms.DateInput(attrs={'type': 'date'}),
             'beurteilung_erläuterung': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
         }
+
+class BeurteilungstemplateForm(ModelForm):
+    class Meta:
+        model = Beurteilungstemplate
+        fields = ['beurteilungstemplate_bezeichnung']

@@ -1,0 +1,27 @@
+{%extends "container.html"%}
+
+{%block content%}
+
+    {% if form %}
+
+    <h2>Template ändern</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.beurteilungstemplate_bezeichnung.errors }}
+        {{ form.beurteilungstemplate_bezeichnung.label_tag }} {{ form.beurteilungstemplate_bezeichnung }}
+        {{ form.beurteilungstemplate_beschreibung.errors }}
+        {{ form.beurteilungstemplate_beschreibung.label_tag }} {{ form.beurteilungstemplate_beschreibung }}
+        {{form}}
+
+    <button type="submit" class="btn btn-primary">Speichern</button>
+    </form>
+    {% endif %}
+    
+
+    {% if not form %}
+        <p>Kein Beurteilungstemplate gefunden.</p>
+    {% endif %}
+
+
+{%endblock content%}

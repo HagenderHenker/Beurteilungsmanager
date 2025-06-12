@@ -7,8 +7,10 @@
     {% for template in beurteilungstemplates%}
 
         <div class="beurteilungstemplate">
-            <p>{{ template.beurteilungstemplate_bezeichnung}}</p>
-      
+            <form method="POST">
+            {% csrf_token %}
+            <a href= "{% url 'beurteilungstemplates_detail' template.id %}"> {{ template.beurteilungstemplate_bezeichnung}}</a>
+            </form>
         </div>
         <hr>
 

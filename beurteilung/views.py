@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse
-from beurteilung.forms import BeurteilungForm
+from django.shortcuts import render, HttpResponse, get_object_or_404
+from beurteilung.forms import BeurteilungForm, BeurteilungstemplateForm
 from beurteilung.models import Beurteilungen,  Beurteilungstemplate, Beurteilungsgliederung, Beurteilungsauspraegungen
 # Create your views here.
 
@@ -29,8 +29,23 @@ def beurteilungstemplates_detail(request, template_id):
     """
     View to display details of a specific Beurteilung template.
     """
-    # This is a placeholder for the actual logic to retrieve a specific Beurteilung template by ID.
-    return HttpResponse(f"Details of Beurteilung template with ID {template_id} will be displayed here.")
+    template = get_object_or_404(Beurteilungstemplate, id=template_id)
+    form = BeurteilungstemplateForm(instance=template)
+    
+
+    if request.method == 'POST':
+        form = BeurteilungstemplateForm(request.POST or None, instance=template)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Beurteilung template updated successfully.")
+        
+    return render(request, 'beurteilungstemplate/beurteilungstemplates_detail.html', {'form': form})
+
+
+    
+
+    
+    return render(request, 'beurteilungstemplate/beurteilungstemplates_update.html', {} )
 
 def beurteilungsgliederung_list(request):
     """
